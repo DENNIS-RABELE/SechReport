@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Report Detail</title>
+    <link rel="stylesheet" href="{% static 'adminpanel1/css/admin.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="brand">
+        <img
+          src="{% static 'adminpanel1/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+      </div>
+      <h1>Sech-academy Reporting Sytem</h1>
+      <p class="sub-header">Place to attend and respond Students concerns</p>
+      <p style="text-align: right; margin: 0 0 12px">
+        <a href="{% url 'admin_logout' %}">Logout</a>
+      </p>
+      <h2>{{ report.title }}</h2>
+
+      <p><strong>Status:</strong> {{ report.status }}</p>
+      <p><strong>Severity:</strong> {{ report.severity }}</p>
+      <p><strong>Description:</strong> {{ report.description }}</p>
+      <p><strong>Location:</strong> {{ report.location }}</p>
+
+      <form method="POST">
+        {% csrf_token %} {{ update_form.as_p }}
+        <button type="submit" name="update_report" class="btn">Update Report</button>
+      </form>
+
+      <hr />
+
+      <h3>Conversation</h3>
+
+      {% for msg in messages %}
+      <div class="message">
+        <strong>{{ msg.sender_type }}:</strong>
+        <p>{{ msg.content }}</p>
+      </div>
+      {% endfor %}
+
+      <hr />
+
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn">Respond</button>
+      </form>
+
+      <br />
+      <a href="{% url 'dashboard' %}">Back</a>
+    </div>
+    <script>
+      window.addEventListener('pageshow', function (event) {
+        // Prevent stale CSRF token submission from browser back/forward cache.
+        if (event.persisted) {
+          window.location.reload();
+        }
+      });
+    </script>
+  </body>
+</html>

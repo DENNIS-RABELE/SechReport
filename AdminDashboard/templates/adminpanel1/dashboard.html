@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'adminpanel1/css/admin.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="brand">
+        <img
+          src="{% static 'adminpanel1/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+      </div>
+      <h1>Sech-academy Reporting Sytem</h1>
+      <p class="sub-header">Place to attend and respond to Students concerns</p>
+      <p style="text-align: right; margin: 0 0 12px">
+        <a href="{% url 'admin_logout' %}">Logout</a>
+      </p>
+      <h2>All Reports</h2>
+
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Severity</th>
+          <th>Created</th>
+          <th>Action</th>
+        </tr>
+
+        {% for report in reports %}
+        <tr>
+          <td data-label="Title">{{ report.title }}</td>
+          <td data-label="Status">{{ report.status }}</td>
+          <td data-label="Severity">{{ report.severity }}</td>
+          <td data-label="Created">{{ report.created_at }}</td>
+          <td data-label="Action">
+            <a href="{% url 'report_login_gate' report.id %}">View</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>

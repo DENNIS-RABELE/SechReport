@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Conversation Report</title>
+    <link rel="stylesheet" href="{% static 'students/css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img
+          src="{% static 'students/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+      </div>
+
+<h2>Report Status: {{ report.status }}</h2>
+
+<div>
+  {% for msg in messages %}
+  <p><strong>{{ msg.sender_type }}:</strong> {{ msg.content }}</p>
+  {% endfor %}
+</div>
+
+<form method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Send</button>
+</form>
+  </body>
+</html>

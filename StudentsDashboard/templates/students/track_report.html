@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Track Report</title>
+    <link rel="stylesheet" href="{% static 'students/css/style.css' %}" />
+  </head>
+
+  <body>
+
+     <div class="container">
+      <div class="logo">
+        <img
+          src="{% static 'students/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+      </div>
+      
+    <div class="container">
+      <h2>Track Your Report</h2>
+
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn">Track</button>
+      </form>
+
+      <a href="{% url 'submit_report' %}">Submit New Report</a>
+    </div>
+  </body>
+</html>

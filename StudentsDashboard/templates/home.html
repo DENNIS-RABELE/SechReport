@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Sech Academy Reporting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffe600;
+        color: #000;
+      }
+      .wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .card {
+        width: min(520px, 100%);
+        background: #fff;
+        border-radius: 10px;
+        padding: 24px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      }
+      .logo {
+        width: 90px;
+        height: auto;
+        border-radius: 8px;
+      }
+      h1 {
+        margin: 14px 0 6px;
+        font-size: 1.6rem;
+      }
+      p {
+        margin: 0 0 18px;
+      }
+      .actions {
+        display: grid;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        background: #000;
+        color: #fff;
+        padding: 12px 14px;
+        border-radius: 6px;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <img
+          class="logo"
+          src="{% static 'students/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+        <h1>Sech-Academy Reporting System</h1>
+        <p>Select where you want to continue</p>
+        <div class="actions">
+          <a class="btn" href="{% url 'submit_report' %}">Student Portal</a>
+          <a class="btn" href="{% url 'admin_login' %}">Admin Portal</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

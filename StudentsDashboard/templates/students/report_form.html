@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    {% load static %}
+    <title>Submit Report</title>
+    <link rel="stylesheet" href="{% static 'students/css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img
+          src="{% static 'students/images/sechacademy.jpg' %}"
+          alt="Sech Academy Logo"
+        />
+      </div>
+
+      <h1>Sech-Academy Reporting System</h1>
+      <h3>Anonymity is prioritised</h3>
+
+      {% if success %}
+      <p class="success-msg">
+        Report submitted successfully!<br />
+        Your tracking token: <strong>{{ tracking_token }}</strong>
+      </p>
+      {% endif %}
+
+      {% if form.errors %}
+      <div class="error-msg" style="color: #c00000">
+        {{ error_message }}
+      </div>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn">Submit</button>
+      </form>
+
+      <a href="{% url 'track_report' %}" class="track-link">Track Report</a>
+    </div>
+  </body>
+</html>
